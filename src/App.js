@@ -1,20 +1,17 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
-class App extends Component {
+class App extends React.Component{
+  componentWillMount() {
+    console.log('组件马上加载')
+  }
+  componentDidMount() {
+    console.log('组件加载完毕')
+  }
   render() {
+    console.log('组件正在加载')
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+      <h2>独立团</h2>
+    )
   }
 }
 
