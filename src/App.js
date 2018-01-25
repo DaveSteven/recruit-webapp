@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { addGun, removeGun, addGunAsync } from './index.redux';
 import { Button } from 'antd-mobile';
 
-@connect(state => ({ num: state }), { addGun, removeGun, addGunAsync })
+@connect(state => ({ num: state.counter }), { addGun, removeGun, addGunAsync })
 class App extends Component {
   render() {
     return (
