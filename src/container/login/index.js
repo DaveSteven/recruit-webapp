@@ -1,12 +1,6 @@
 import React from 'react';
 import Logo from '@/components/logo';
-import {
-  List,
-  InputItem,
-  WingBlank,
-  WhiteSpace,
-  Button
-} from 'antd-mobile';
+import { List, InputItem, WingBlank, WhiteSpace, Button } from 'antd-mobile';
 
 class Login extends React.Component {
   constructor() {
@@ -29,9 +23,13 @@ class Login extends React.Component {
         <WhiteSpace />
         <WhiteSpace />
         <WingBlank>
-          <Button type="primary">登录</Button>
+          <p>
+            还没有账号？<a href="#" onClick={this.register}>
+              去注册
+            </a>
+          </p>
           <WhiteSpace />
-          <Button onClick={this.register}>注册</Button>
+          <Button type="primary">登录</Button>
         </WingBlank>
       </div>
     );
