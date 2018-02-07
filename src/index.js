@@ -15,6 +15,8 @@ import './config';
 import Login from './container/login';
 import Register from './container/register';
 import AuthRoute from './components/authRoute';
+import BossInfo from './container/bossinfo';
+import GeniusInfo from './container/geniusinfo';
 
 const store = createStore(
   reducers,
@@ -25,7 +27,7 @@ const store = createStore(
 );
 
 function Boss(props) {
-  return <h2>Boss页面</h2>
+  return <h2>Boss页面</h2>;
 }
 
 ReactDOM.render(
@@ -33,9 +35,13 @@ ReactDOM.render(
     <Router>
       <div>
         <AuthRoute />
-        <Route path="/boss" component={Boss} />
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
+        <Switch>
+          <Route path="/bossinfo" component={BossInfo} />
+          <Route path="/geniusinfo" component={GeniusInfo} />
+          <Route path="/boss" component={Boss} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+        </Switch>
       </div>
     </Router>
   </Provider>,
