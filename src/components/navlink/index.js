@@ -15,17 +15,17 @@ class NavLinkBar extends React.Component {
     return (
       <div>
         <TabBar tintColor='#17abe3'>
-          {navList.map(v => (
+          {navList.map(item => (
             <TabBar.Item
-              key={v.path}
-              title={v.text}
+              key={item.path}
+              title={item.text}
               icon={
                 <div
                   style={{
                     width: '22px',
                     height: '22px',
-                    background: `url(${require(`../img/${
-                      v.icon
+                    background: `url(${require(`../../img/${
+                      item.icon
                     }.svg`)}) center center /  21px 21px no-repeat`
                   }}
                 />
@@ -35,15 +35,15 @@ class NavLinkBar extends React.Component {
                   style={{
                     width: '22px',
                     height: '22px',
-                    background: `url(${require(`../img/${
-                      v.icon
+                    background: `url(${require(`../../img/${
+                      item.icon
                     }_selected.svg`)}) center center /  21px 21px no-repeat`
                   }}
                 />
               }
-              selected={pathname === v.path}
+              selected={pathname === item.path}
               onPress={() => {
-                this.props.history.push(v.path);
+                this.props.history.push(item.path);
               }}
             />
           ))}

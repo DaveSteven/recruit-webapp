@@ -17,13 +17,12 @@ function Message() {
 }
 
 function User() {
-  return <h2>用户泪飙</h2>;
+  return <h2>用户列表</h2>;
 }
 
 @connect(state => state)
 class DashBoard extends React.Component {
   render() {
-    console.log(this.props);
     const { pathname } = this.props.location;
     const user = this.props.user;
     const navList = [
@@ -61,7 +60,7 @@ class DashBoard extends React.Component {
     return (
       <div>
         <NavBar mode="dard">
-          {navList.find(v => v.path === pathname).title}
+          {navList.find(item => item.path === pathname).title}
         </NavBar>
         <h2>content</h2>
         <NavLinkBar data={navList}></NavLinkBar>

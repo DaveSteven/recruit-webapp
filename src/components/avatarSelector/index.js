@@ -13,7 +13,7 @@ class AvatarSelector extends React.Component {
   }
   render() {
     const avatarList = 'dog,bear,cat'.split(',').map(name => ({
-      icon: require(`../img/${name}.jpg`),
+      icon: require(`../../img/${name}.jpg`),
       text: name
     }));
 
