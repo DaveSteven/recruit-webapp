@@ -1,3 +1,4 @@
+import './style/index.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -17,6 +18,7 @@ import Register from './container/register';
 import AuthRoute from './components/authRoute';
 import BossInfo from './container/bossinfo';
 import GeniusInfo from './container/geniusinfo';
+import Dashboard from './components/dashboard';
 
 const store = createStore(
   reducers,
@@ -26,10 +28,6 @@ const store = createStore(
   )
 );
 
-function Boss(props) {
-  return <h2>Boss页面</h2>;
-}
-
 ReactDOM.render(
   <Provider store={store}>
     <Router>
@@ -38,9 +36,9 @@ ReactDOM.render(
         <Switch>
           <Route path="/bossinfo" component={BossInfo} />
           <Route path="/geniusinfo" component={GeniusInfo} />
-          <Route path="/boss" component={Boss} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route component={Dashboard} />
         </Switch>
       </div>
     </Router>
