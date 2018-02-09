@@ -4,9 +4,9 @@ import { getUserList } from '@/redux/chatuser.redux';
 import UserCard from '../usercard';
 
 @connect(state => state.chatUser, { getUserList })
-class Boss extends React.Component {
+class Genius extends React.Component {
   componentWillMount() {
-    this.props.getUserList('genius');
+    this.props.getUserList('boss');
   }
 
   render() {
@@ -14,4 +14,4 @@ class Boss extends React.Component {
   }
 }
 
-export default Boss;
+export default Genius;

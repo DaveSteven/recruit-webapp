@@ -4,10 +4,7 @@ import { connect } from 'react-redux';
 import { NavBar } from 'antd-mobile';
 import NavLinkBar from '../navlink';
 import Boss from '../boss';
-
-function Genius() {
-  return <h2>牛人首页</h2>;
-}
+import Genius from '../genius';
 
 function Message() {
   return <h2>消息列表</h2>;

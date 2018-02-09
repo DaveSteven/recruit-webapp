@@ -20,8 +20,9 @@ a {
 .am-card-header {
   .am-card-header-content {
     img {
-      width: 64px;
-      height: 64px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
     }
   }
 }
