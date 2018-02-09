@@ -1,12 +1,9 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { NavBar } from 'antd-mobile';
 import NavLinkBar from '../navlink';
-
-function Boss() {
-  return <h2>Boss首页</h2>;
-}
+import Boss from '../boss';
 
 function Genius() {
   return <h2>牛人首页</h2>;
@@ -59,11 +56,21 @@ class DashBoard extends React.Component {
     ];
     return (
       <div>
-        <NavBar mode="dard">
+        <NavBar className="fixed-header" mode="dard">
           {navList.find(item => item.path === pathname).title}
         </NavBar>
-        <h2>content</h2>
-        <NavLinkBar data={navList}></NavLinkBar>
+        <div style={{ marginTop: 45 }}>
+          <Switch>
+            {navList.map(item => (
+              <Route
+                key={item.path}
+                path={item.path}
+                component={item.component}
+              />
+            ))}
+          </Switch>
+        </div>
+        <NavLinkBar data={navList} />
       </div>
     );
   }

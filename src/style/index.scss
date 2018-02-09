@@ -1,3 +1,27 @@
 a {
-    color: #17abe3;
+  color: #17abe3;
+}
+
+.am-tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: auto !important;
+}
+
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.am-card-header {
+  .am-card-header-content {
+    img {
+      width: 64px;
+      height: 64px;
+    }
+  }
 }
