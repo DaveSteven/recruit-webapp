@@ -4,6 +4,7 @@ import { getRedirectPath } from '@/utils';
 const AUTH_SUCCESS = 'AUTH_SUCCESS';
 const ERROR_MSG = 'ERROR_MSG';
 const LOAD_DATA = 'LOAD_DATA';
+const LOGOUT = 'LOGOUT';
 
 // reducer
 const initState = {
@@ -27,6 +28,11 @@ export function user(state = initState, action) {
         ...state,
         ...action.payload
       };
+    case LOGOUT:
+      return {
+        ...initState,
+        redirectTo: '/login'
+      }
     case ERROR_MSG:
       return { ...state, msg: action.msg };
     default:
@@ -44,6 +50,7 @@ function errorMsg(msg) {
   return { msg, type: ERROR_MSG };
 }
 
+
 export function register({ user, pwd, type }) {
   if (!user || !pwd || !type) {
     return errorMsg('用户名密码必填！');
@@ -57,6 +64,10 @@ export function register({ user, pwd, type }) {
       }
     });
   };
+}
+
+export function logout() {
+  return { type: LOGOUT }
 }
 
 export function loadData(userinfo) {

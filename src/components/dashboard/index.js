@@ -5,13 +5,10 @@ import { NavBar } from 'antd-mobile';
 import NavLinkBar from '../navlink';
 import Boss from '../boss';
 import Genius from '../genius';
+import User from '../user';
 
 function Message() {
   return <h2>消息列表</h2>;
-}
-
-function User() {
-  return <h2>用户列表</h2>;
 }
 
 @connect(state => state)

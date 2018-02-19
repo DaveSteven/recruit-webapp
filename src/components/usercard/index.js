@@ -1,7 +1,9 @@
 import React from 'react';
 import { Card, WhiteSpace } from 'antd-mobile';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
+@withRouter
 class UserCard extends React.Component {
   static propTypes = {
     userList: PropTypes.array.isRequired
@@ -15,7 +17,7 @@ class UserCard extends React.Component {
             item.avatar ? (
               <div key={item._id}>
                 <WhiteSpace />
-                <Card full>
+                <Card full onClick={() => this.props.history.push(`/chat/${item.user}`)}>
                   <Card.Header
                     title={item.user}
                     thumb={require(`../../img/${item.avatar}.jpg`)}

@@ -1,3 +1,8 @@
+img {
+  width: 100%;
+  display: block;
+}
+
 a {
   color: #17abe3;
 }
@@ -25,4 +30,11 @@ a {
       border-radius: 50%;
     }
   }
+}
+
+.fixed-bottom {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }

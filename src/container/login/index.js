@@ -4,15 +4,13 @@ import { List, InputItem, WingBlank, WhiteSpace, Button } from 'antd-mobile';
 import { login } from '@/redux/user.redux';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import recruitForm from '@/components/recruitForm';
 
 @connect(state => state.user, { login })
+@recruitForm
 class Login extends React.Component {
   constructor() {
     super();
-    this.state = {
-      user: '',
-      pwd: ''
-    };
     this.register = this.register.bind(this);
   }
 
@@ -20,28 +18,22 @@ class Login extends React.Component {
     this.props.history.push('/register');
   }
 
-  handleChange(key, val) {
-    this.setState({
-      [key]: val
-    });
-  }
-
   handleLogin() {
-    this.props.login(this.state);
+    this.props.login(this.props.state);
   }
 
   render() {
     return (
       <div>
-        { this.props.redirectTo ? <Redirect to={this.props.redirectTo} /> : null }
+        { (this.props.redirectTo && this.props.redirectTo !== '/login') ? <Redirect to={this.props.redirectTo} /> : null }
         <Logo />
         <List renderHeader={this.props.msg ? this.props.msg : null}>
-          <InputItem onChange={val => this.handleChange('user', val)}>
+          <InputItem onChange={val => this.props.handleChange('user', val)}>
             用户
           </InputItem>
           <InputItem
             type="password"
-            onChange={val => this.handleChange('pwd', val)}
+            onChange={val => this.props.handleChange('pwd', val)}
           >
             密码
           </InputItem>
