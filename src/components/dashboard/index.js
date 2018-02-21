@@ -18,7 +18,7 @@ class DashBoard extends React.Component {
     const user = this.props.user;
     const navList = [
       {
-        path: '/boss',
+        path: '/genius',
         text: '牛人',
         icon: 'list',
         title: '牛人列表',
@@ -26,7 +26,7 @@ class DashBoard extends React.Component {
         hide: user.type === 'genius'
       },
       {
-        path: '/genius',
+        path: '/boss',
         text: 'Boss',
         icon: 'list',
         title: 'Boss列表',

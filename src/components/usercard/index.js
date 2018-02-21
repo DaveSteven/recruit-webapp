@@ -17,7 +17,7 @@ class UserCard extends React.Component {
             item.avatar ? (
               <div key={item._id}>
                 <WhiteSpace />
-                <Card full onClick={() => this.props.history.push(`/chat/${item.user}`)}>
+                <Card full onClick={() => this.props.history.push(`/chat/${item._id}`)}>
                   <Card.Header
                     title={item.user}
                     thumb={require(`../../img/${item.avatar}.jpg`)}

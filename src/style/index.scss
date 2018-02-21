@@ -20,6 +20,7 @@ a {
   top: 0;
   left: 0;
   right: 0;
+  z-index: 9999;
 }
 
 .am-card-header {
@@ -37,4 +38,74 @@ a {
   right: 0;
   bottom: 0;
   left: 0;
+}
+
+.chat-container {
+  padding: 50px 10px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.popover {
+  display: flex;
+  align-items: flex-start;
+
+  + .popover {
+    margin-top: 15px;
+  }
+
+  .avatar {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+  }
+
+  .content {
+    position: relative;
+    padding: 5px;
+    background: #0f83e6;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 12px;
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 5px;
+      width: 0;
+      height: 0;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+    }
+  }
+
+  &.popover-left {
+    justify-content: flex-start;
+
+    .avatar {
+      margin-right: 10px;
+    }
+    .content {
+      &:before {
+        left: -5px;
+        border-right: 5px solid #0f83e6;
+      }
+    }
+  }
+
+  &.popover-right {
+    justify-content: flex-end;
+
+    .avatar {
+      margin-left: 10px;
+    }
+
+    .content {
+      &:before {
+        right: -5px;
+        border-left: 5px solid #0f83e6;
+      }
+    }
+  }
 }

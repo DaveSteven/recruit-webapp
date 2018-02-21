@@ -35,11 +35,11 @@ ReactDOM.render(
       <div>
         <AuthRoute />
         <Switch>
-          <Route path="/chat/:user" component={Chat} />
           <Route path="/bossinfo" component={BossInfo} />
           <Route path="/geniusinfo" component={GeniusInfo} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/chat/:user" component={Chat} />
           <Route component={Dashboard} />
         </Switch>
       </div>

@@ -26,7 +26,8 @@ export function user(state = initState, action) {
     case LOAD_DATA:
       return {
         ...state,
-        ...action.payload
+        ...action.payload,
+        redirectTo: getRedirectPath(action.payload)
       };
     case LOGOUT:
       return {
