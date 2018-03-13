@@ -44,6 +44,11 @@ a {
   padding: 50px 10px;
   overflow-x: hidden;
   overflow-y: auto;
+  transition: padding .3s ease-in-out;
+
+  &.show-emoji {
+    padding-bottom: 144px;
+  }
 }
 
 .popover {
@@ -107,5 +112,24 @@ a {
         border-left: 5px solid #0f83e6;
       }
     }
+  }
+}
+
+.chat-window {
+  .am-grid {
+    .am-grid-text {
+      margin-top: -10px !important;
+    }
+    &.emoji-box {
+      margin-bottom: -94px;
+      transition: margin .3s ease-in-out;
+
+      &.show-emoji {
+        margin-bottom: 0;
+      }
+    }
+  }
+  .emoji-switch {
+    margin-right: 10px;
   }
 }

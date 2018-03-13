@@ -1,11 +1,12 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { NavBar, List, InputItem, Icon } from 'antd-mobile';
+import { NavBar, List, InputItem, Icon, Grid } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { getMsgList, sendMsg, receiveMsg } from '@/redux/chat.redux';
+import { getMsgList, receiveMsg,sendMsg } from '@/redux/chat.redux';
+import { getChatId } from '@/utils';
 
 @withRouter
-@connect(state => state, { getMsgList, sendMsg, receiveMsg })
+@connect(state => state, { getMsgList, receiveMsg, sendMsg })
 class Chat extends React.Component {
   constructor(props) {
     super(props);
@@ -15,6 +16,16 @@ class Chat extends React.Component {
     };
   }
 
+  componentDidMount() {
+    if (!this.props.chat.msgList.length) {
+      this.props.getMsgList();
+      this.props.receiveMsg();
+    }
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+    }, 0)
+  }
+
   handleSubmit() {
     if (this.state.text) {
       const from = this.props.user._id;
@@ -22,21 +33,27 @@ class Chat extends React.Component {
       const content = this.state.text;
       this.props.sendMsg({ from, to, content });
       this.setState({
-        text: ''
+        text: '',
+        showEmoji: false
       });
     }
   }
 
-  componentDidMount() {
-    if (!this.props.chat.msgList.length) {
-      this.props.getMsgList();
-      this.props.receiveMsg();
-    }
+  handleShowEmoji() {
+    this.setState({
+      showEmoji: !this.state.showEmoji
+    })
   }
 
   render() {
+    const emoji = '😃 😂 😍 🤔 😊 🙄 😪 ⚽ 🍔 🤷 💖 💔 💞 💝 💘 ⛄ 🙈 💥 💦 💫 🐱 🐮 🐂 🐐 🦏 🐿 👩‍❤️‍👨'
+                  .split(' ')
+                  .filter(v => v)
+                  .map(v => ({ text: v }));
     const userid = this.props.match.params.user;
     const users = this.props.chat.users;
+    const chatId = getChatId(userid, this.props.user._id);
+    const msgList = this.props.chat.msgList.filter(v => v.chatId === chatId);
     if (!users[userid]) {
       return null;
     }
@@ -52,8 +69,8 @@ class Chat extends React.Component {
         >
           {users[userid].name}
         </NavBar>
-        <div className="chat-container">
-          {this.props.chat.msgList.map(item => {
+        <div className={`chat-container ${this.state.showEmoji ? 'show-emoji':''}`}>
+          {msgList.map(item => {
             const avatar = require(`../../img/${users[item.from].avatar}.jpg`);
             return item.from === userid ? (
               <section className="popover popover-left" key={item._id}>
@@ -66,24 +83,36 @@ class Chat extends React.Component {
                 <div className="content">{item.content}</div>
               </section>
             ) : (
-              <section className="popover popover-right" key={item._id}>
-                <div className="content">{item.content}</div>
-                <div className="avatar">
-                  <img src={avatar} alt="" />
-                </div>
-              </section>
-            );
+                <section className="popover popover-right" key={item._id}>
+                  <div className="content">{item.content}</div>
+                  <div className="avatar">
+                    <img src={avatar} alt="" />
+                  </div>
+                </section>
+              );
           })}
         </div>
-        <div className="fixed-bottom">
+        <div className="fixed-bottom chat-window">
           <List>
             <InputItem
               placeholder="请输入消息"
               value={this.state.text}
               onChange={text => this.setState({ text })}
-              extra={<span onClick={() => this.handleSubmit()}>发送</span>}
+              extra={
+                <div>
+                  <span className="emoji-switch" onClick={() => this.handleShowEmoji()}>😃</span>
+                  <span onClick={() => this.handleSubmit()}>发送</span>
+                </div>
+              }
             />
           </List>
+          <Grid
+            className={`emoji-box ${this.state.showEmoji ? 'show-emoji':''}`}
+            data={emoji}
+            columnNum={8}
+            carouseMaxRow={4}
+            isCarousel={true}
+          />
         </div>
       </div>
     );

@@ -12,11 +12,6 @@ class NavLinkBar extends React.Component {
     data: PropTypes.array.isRequired
   };
 
-  componentDidMount() {
-    this.props.getMsgList();
-    this.props.receiveMsg();
-  }
-
   render() {
     const navList = this.props.data.filter(v => !v.hide);
     const { pathname } = this.props.location;

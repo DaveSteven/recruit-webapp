@@ -35,8 +35,8 @@ ReactDOM.render(
       <div>
         <AuthRoute />
         <Switch>
-          <Route path="/bossinfo" component={BossInfo} />
-          <Route path="/geniusinfo" component={GeniusInfo} />
+          <Route path="/bossinfo" component={GeniusInfo} />
+          <Route path="/geniusinfo" component={BossInfo} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/chat/:user" component={Chat} />
