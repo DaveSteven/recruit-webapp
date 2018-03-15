@@ -21,6 +21,8 @@ class Chat extends React.Component {
       this.props.getMsgList();
       this.props.receiveMsg();
     }
+
+    // 修复跑马灯Bug
     setTimeout(() => {
       window.dispatchEvent(new Event('resize'));
     }, 0)
@@ -37,12 +39,6 @@ class Chat extends React.Component {
         showEmoji: false
       });
     }
-  }
-
-  handleShowEmoji() {
-    this.setState({
-      showEmoji: !this.state.showEmoji
-    })
   }
 
   render() {
@@ -100,7 +96,7 @@ class Chat extends React.Component {
               onChange={text => this.setState({ text })}
               extra={
                 <div>
-                  <span className="emoji-switch" onClick={() => this.handleShowEmoji()}>😃</span>
+                  <span className="emoji-switch" onClick={() => this.setState({showEmoji: !this.state.showEmoji})}>😃</span>
                   <span onClick={() => this.handleSubmit()}>发送</span>
                 </div>
               }
@@ -112,6 +108,9 @@ class Chat extends React.Component {
             columnNum={8}
             carouseMaxRow={4}
             isCarousel={true}
+            onClick={el => {
+              this.setState({text: this.state.text + el.text})
+            }}
           />
         </div>
       </div>
